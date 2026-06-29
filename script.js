@@ -1,6 +1,6 @@
-const navLinks = document.querySelectorAll("nav a");
+const navLinks = document.querySelectorAll(".nav-links a, .footer-links a");
 const sections = document.querySelectorAll("section");
-const headerSubtitle = document.querySelector("header p");
+const themeButton = document.querySelector(".theme-button");
 
 sections.forEach((section) => {
   section.classList.add("reveal");
@@ -15,7 +15,7 @@ const revealObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.2,
+    threshold: 0.15,
   }
 );
 
@@ -27,14 +27,14 @@ window.addEventListener("scroll", () => {
   let currentSection = "";
 
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 140;
+    const sectionTop = section.offsetTop - 120;
 
     if (window.scrollY >= sectionTop) {
       currentSection = section.getAttribute("id");
     }
   });
 
-  navLinks.forEach((link) => {
+  document.querySelectorAll(".nav-links a").forEach((link) => {
     link.classList.remove("active-link");
 
     if (link.getAttribute("href") === `#${currentSection}`) {
@@ -43,21 +43,12 @@ window.addEventListener("scroll", () => {
   });
 });
 
-const subtitleText = "ICT Undergraduate | Aspiring DevOps Professional";
-let index = 0;
-
-function typeText() {
-  if (index < subtitleText.length) {
-    headerSubtitle.textContent += subtitleText.charAt(index);
-    index++;
-    setTimeout(typeText, 55);
-  }
-}
-
-if (headerSubtitle) {
-  headerSubtitle.textContent = "";
-  typeText();
-}
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.forEach((navLink) => navLink.classList.remove("active-link"));
+    link.classList.add("active-link");
+  });
+});
 
 const backToTopButton = document.createElement("button");
 backToTopButton.textContent = "↑";
@@ -65,7 +56,7 @@ backToTopButton.className = "back-to-top";
 document.body.appendChild(backToTopButton);
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 400) {
+  if (window.scrollY > 450) {
     backToTopButton.classList.add("show");
   } else {
     backToTopButton.classList.remove("show");
@@ -78,3 +69,15 @@ backToTopButton.addEventListener("click", () => {
     behavior: "smooth",
   });
 });
+
+if (themeButton) {
+  themeButton.addEventListener("click", () => {
+    document.body.classList.add("theme-clicked");
+    themeButton.textContent = "✦";
+
+    setTimeout(() => {
+      themeButton.textContent = "☼";
+      document.body.classList.remove("theme-clicked");
+    }, 600);
+  });
+}
