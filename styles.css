@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f7fb;
+  color: #1f2937;
+  line-height: 1.7;
+}
+
+header {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1d4ed8, #7c3aed);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  top: -120px;
+  right: -120px;
+  animation: floatCircle 6s ease-in-out infinite;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  bottom: -80px;
+  left: -80px;
+  animation: floatCircle 8s ease-in-out infinite reverse;
+}
+
+header h1 {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  margin-bottom: 15px;
+  z-index: 1;
+  animation: slideDown 1s ease forwards;
+}
+
+header p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+  z-index: 1;
+  animation: fadeIn 1.4s ease forwards;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 1;
+  animation: slideUp 1.2s ease forwards;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+nav a:hover {
+  background: white;
+  color: #1d4ed8;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 70px 20px;
+}
+
+section {
+  background: white;
+  margin-bottom: 35px;
+  padding: 40px;
+  border-radius: 22px;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUp 0.8s ease both;
+}
+
+section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.13);
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+  color: #1d4ed8;
+  position: relative;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #1d4ed8, #7c3aed);
+  border-radius: 999px;
+  margin-top: 8px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+li {
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+li:hover {
+  background: #3730a3;
+  color: white;
+  transform: scale(1.08);
+}
+
+article {
+  background: #f8fafc;
+  padding: 25px;
+  border-radius: 18px;
+  margin-top: 18px;
+  border-left: 5px solid #1d4ed8;
+  transition: all 0.3s ease;
+}
+
+article:hover {
+  background: #eef2ff;
+  transform: translateX(8px);
+}
+
+article h3 {
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+#contact p {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #0f172a;
+  color: white;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.95;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatCircle {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(35px) scale(1.08);
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    min-height: 90vh;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  section {
+    padding: 28px;
+  }
+
+  section h2 {
+    font-size: 1.6rem;
+  }
+}
